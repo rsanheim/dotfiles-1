@@ -27,7 +27,7 @@ script/bootstrap
 This will symlink the appropriate files in `.dotfiles` to your home directory.
 Everything is configured and tweaked within `~/.dotfiles`.
 
-The main file you'll want to change right off the bat is `zsh/zshrc.symlink`,
+The main file you'll want to change right off the bat is `bash/bashrc.symlink`,
 which sets up a few paths that'll be different on your particular machine.
 
 `dot` is a simple script that installs some dependencies, sets sane OS X
@@ -39,7 +39,7 @@ this script in `bin/`.
 
 Everything's built around topic areas. If you're adding a new area to your
 forked dotfiles — say, "Java" — you can simply add a `java` directory and put
-files in there. Anything with an extension of `.zsh` will get automatically
+files in there. Anything with an extension of `.bash` will get automatically
 included into your shell. Anything with an extension of `.symlink` will get
 symlinked without extension into `$HOME` when you run `script/bootstrap`.
 
@@ -56,11 +56,11 @@ There's a few special files in the hierarchy.
 
 - **bin/**: Anything in `bin/` will get added to your `$PATH` and be made
   available everywhere.
-- **topic/\*.zsh**: Any files ending in `.zsh` get loaded into your
+- **topic/\*.bash**: Any files ending in `.bash` get loaded into your
   environment.
-- **topic/path.zsh**: Any file named `path.zsh` is loaded first and is
+- **topic/path.bash**: Any file named `path.bash` is loaded first and is
   expected to setup `$PATH` or similar.
-- **topic/completion.zsh**: Any file named `completion.zsh` is loaded
+- **topic/completion.bash**: Any file named `completion.bash` is loaded
   last and is expected to setup autocomplete.
 - **topic/\*.symlink**: Any files ending in `*.symlink` get symlinked into
   your `$HOME`. This is so you can keep all of those versioned in your dotfiles
@@ -86,3 +86,9 @@ weight of my changes and tweaks inspired me to finally roll my own. But Ryan's
 dotfiles were an easy way to get into bash customization, and then to jump ship
 to zsh a bit later. A decent amount of the code in these dotfiles stem or are
 inspired from Ryan's original project.
+
+## forker's addendum
+
+I forked this further from Zach and converted back from zsh to bash (no
+accounting for taste, I suppose), and updated to rely on Boxen for a lot of
+things; then plopped my own dotfiles in here.
