@@ -2,12 +2,11 @@
 require 'irb/completion'
 require 'irb/ext/save-history'
 require 'rubygems'
+require 'pp'
 
-IRB.conf[:SAVE_HISTORY] = 1000
+IRB.conf[:SAVE_HISTORY] = 10000
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
-
 IRB.conf[:PROMPT_MODE] = :SIMPLE
-
 IRB.conf[:AUTO_INDENT] = true
 
 class Object
@@ -38,3 +37,13 @@ end
 def r
   reload!
 end
+
+# copy a string to the clipboard
+def pbcopy(string)
+  `echo "#{string}" | pbcopy`
+  string
+end
+
+# courtesy jbarnette:
+$:.unshift "lib" if File.directory? "lib"
+
