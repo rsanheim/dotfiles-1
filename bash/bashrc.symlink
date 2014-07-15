@@ -12,17 +12,20 @@ then
 fi
 
 # all of our bash files
-typeset -U config_files
+# TODO: wtf
+#typeset -U config_files
 config_files=($BASH/**/*.bash)
 
 # load the path files
-for file in ${(M)config_files:#*/path.bash}
+for file in $(find $BASH -type f -name 'path.bash')
 do
   source $file
 done
 
+others=`find $BASH -type f -name '*.bash' | grep -v -e completion.bash -e path.bash`
+
 # load everything but the path and completion files
-for file in ${${config_files:#*/path.bash}:#*/completion.bash}
+for file in $others
 do
   source $file
 done
@@ -33,7 +36,7 @@ done
 # compinit
 
 # load every completion after autocomplete loads
-for file in ${(M)config_files:#*/completion.bash}
+for file in $(find $BASH -type f -name 'completion.bash')
 do
   source $file
 done
