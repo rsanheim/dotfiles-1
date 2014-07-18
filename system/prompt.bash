@@ -1,27 +1,80 @@
-OS=`uname`
-PROMPTOS='\[\033[1;31m\]@\[\033[m\]'
+# bring in boxen's version of all the fancy git prompt stuff
+source /opt/boxen/homebrew/etc/bash_completion.d/git-prompt.sh
 
-# get color codes specific for this user@host combination
-MISC='yossefsucks'
-ID=${MISC}`id -nu`
-HOSTID=$ID@`hostname`
-IDHASH=`echo ${ID} | ${MD5} | sed 's/^\(.\).*$/\1/'`
-HOSTIDHASH=`echo ${HOSTID} | ${MD5} | sed 's/^\(.\).*$/\1/'`
-IDCODE=`echo $IDHASH | perl -e '$char = <>; chomp($char); $char = hex($char); print "".(!$char ? 33 : ($char > 8 ? 32+$char : 30+$char))."\n"'`
-HOSTIDCODE=`echo $HOSTIDHASH | perl -e '$char = <>; chomp($char); $char = hex($char); print "".(!$char ? 33 : ($char > 8 ? 32+$char : 30+$char))."\n"'`
-# get yer prompt on!  (thanks brett (brett@shadowed.net) for original prompt)
-PS1="${PROMPTOS} \\[\\033[1;${IDCODE}m\\]\\d \\t\\[\\033[m\\] \\[\\033[1;${HOSTIDCODE}m\\]\\u\\[\\033[0m\\]@\\[\\033[1;${HOSTIDCODE}m\\]\\h\\[\\033[0m\\]\\n${PROD}\\w\\[\\033[1;${IDCODE}m\\]\$(__git_ps1)\$(git_dirty)\\$\\[\\033[m\\] "
+# fancy prompt stuff
 
-export PS1
+TEXT_BLACK='\[\e[0;30m\]' # Black - Regular
+TEXT_RED='\[\e[0;31m\]' # Red
+TEXT_GREEN='\[\e[0;32m\]' # Green
+TEXT_YELLOW='\[\e[0;33m\]' # Yellow
+TEXT_BLUE='\[\e[0;34m\]' # Blue
+TEXT_PURPLE='\[\e[0;35m\]' # Purple
+TEXT_CYAN='\[\e[0;36m\]' # Cyan
+TEXT_WHITE='\[\e[0;37m\]' # White
+# BLDBLK='\[\e[1;30m\]' # Black - Bold
+# BLDRED='\[\e[1;31m\]' # Red
+# BLDGRN='\[\e[1;32m\]' # Green
+# BLDYLW='\[\e[1;33m\]' # Yellow
+# BLDBLU='\[\e[1;34m\]' # Blue
+# BLDPUR='\[\e[1;35m\]' # Purple
+# BLDCYN='\[\e[1;36m\]' # Cyan
+# BLDWHT='\[\e[1;37m\]' # White
+# UNDBLK='\[\e[4;30m\]' # Black - Underline
+# UNDRED='\[\e[4;31m\]' # Red
+# UNDGRN='\[\e[4;32m\]' # Green
+# UNDYLW='\[\e[4;33m\]' # Yellow
+# UNDBLU='\[\e[4;34m\]' # Blue
+# UNDPUR='\[\e[4;35m\]' # Purple
+# UNDCYN='\[\e[4;36m\]' # Cyan
+# UNDWHT='\[\e[4;37m\]' # White
+# BAKBLK='\[\e[40m\]'   # Black - Background
+# BAKRED='\[\e[41m\]'   # Red
+# BAKGRN='\[\e[42m\]'   # Green
+# BAKYLW='\[\e[43m\]'   # Yellow
+# BAKBLU='\[\e[44m\]'   # Blue
+# BAKPUR='\[\e[45m\]'   # Purple
+# BAKCYN='\[\e[46m\]'   # Cyan
+# BAKWHT='\[\e[47m\]'   # White
+TEXT_RESET='\[\e[0m\]'    # Text Reset
 
-# update terminal title
-PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}\007"'
-export PROMPT_COMMAND
+# default:
+# PS1="\h:\W \u\$ "
 
-# TODO: get git info in my prompt again
+previous_exit_color() {
+  if [ $1 -eq 0 ]; then
+    echo -n "${TEXT_GREEN}" #▸${TEXT_RESET}"
+  else
+    #echo -n "${TEXT_RED}✘${TEXT_RESET}"
+    echo -n "${TEXT_RED}" #▸${TEXT_RESET}"
+  fi
+}
 
-#if [[ -n $SSH_CONNECTION ]]; then
-#  export PS1='%m:%3~$(git_info_for_prompt)%# '
-#else
-#  export PS1='%3~$(git_info_for_prompt)%# '
-#fi
+export GIT_PS1_SHOWUPSTREAM="git verbose"
+export GIT_PS1_DESCRIBE_STYLE="branch" # for (master~4) style
+export GIT_PS1_SHOWDIRTYSTATE=true
+# export GIT_PS1_SHOWSTASHSTATE=true
+export GIT_PS1_SHOWUNTRACKEDFILES=true
+export GIT_PS1_SHOWCOLORHINTS=true
+
+if [[ $TERM_PROGRAM == 'iTerm.app' ]]; then
+  # 0 means both tab and window, 1 is tab, 2 is window
+  # see:
+  #   http://www.faqs.org/docs/Linux-mini/Xterm-Title.html#ss4.3
+  #   http://www.mit.edu/afs/athena/system/x11r4/src/mit/clients/xterm/ctlseq2.txt via
+  #   http://ubuntuforums.org/archive/index.php/t-448614.html
+  TAB_NAME='\[\e]1;${PWD/#$HOME/~}\a\]'
+  WINDOW_NAME='\[\e]2;\u@\h:${PWD/#$HOME/~}\a\]'
+else
+  TAB_NAME=''
+  WINDOW_NAME=''
+fi
+
+PROMPT_HOST="${TEXT_PURPLE}$(hostname|sed 's|\..*||')${TEXT_RESET}";
+
+set_prompt(){
+  status_color=$(previous_exit_color $?)
+  history -a # append history after each command
+  __git_ps1 "${TAB_NAME}${WINDOW_NAME}${TEXT_CYAN}\d \t${TEXT_RESET} ${PROMPT_HOST} ${TEXT_YELLOW}\w${TEXT_RESET}\n" " ${status_color}▸${TEXT_RESET} "
+}
+
+PROMPT_COMMAND=set_prompt
