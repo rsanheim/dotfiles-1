@@ -1,16 +1,8 @@
-'editor':
-  'fontSize': 11
-  'showIndentGuide': true
-  'softWrap': true
-  'softWrapAtPreferredLineLength': true
-'core':
-  'themes': [
-    'atom-dark-ui'
-    'atom-dark-syntax'
-  ]
 'exception-reporting':
-  'userId': '80863757-0744-9a5a-e24b-0e7a14699772'
+  'userId': '5dab82a5-60b9-b5d8-93b0-6cbbc9af46f5'
 'welcome':
   'showOnStartup': false
 'metrics':
   'userId': 'f45f6f01061a25c864d112b6d1a2f7ac2ce4591d'
+'editor':
+  'fontSize': 13
