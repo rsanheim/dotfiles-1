@@ -4,6 +4,7 @@
 
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd)
+DOTFILES_DATA="${DOTFILES_ROOT}/data"
 
 set -e
 
@@ -26,7 +27,6 @@ fail () {
   echo ''
   exit
 }
-
 
 link_file () {
   local src=$1 dst=$2
@@ -97,6 +97,9 @@ link_file () {
 
   if [ "$skip" != "true" ]  # "false" or empty
   then
+    dstdir="$(dirname $2)"
+    mkdir -p "${dstdir}"
+
     ln -s "$1" "$2"
     success "linked $1 to $2"
   fi
@@ -107,9 +110,9 @@ install_dotfiles () {
 
   local overwrite_all=false backup_all=false skip_all=false
 
-  for src in $(find "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink')
+  for src in $(find ${DOTFILES_DATA} -type f)
   do
-    dst="$HOME/.$(basename "${src%.*}")"
+    dst="$HOME/${src##${DOTFILES_DATA}/}"
     link_file "$src" "$dst"
   done
 }
