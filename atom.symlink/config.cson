@@ -1,5 +1,8 @@
 'editor':
   'fontSize': 11
+  'showIndentGuide': true
+  'softWrap': true
+  'softWrapAtPreferredLineLength': true
 'core':
   'themes': [
     'atom-dark-ui'
