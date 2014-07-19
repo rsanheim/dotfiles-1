@@ -1,6 +1,6 @@
-atom.symlink/.node-gyp
-atom.symlink/.storage
-atom.symlink/packages
-atom.symlink/storage
-atom.symlink/themes
-atom.symlink/compile-cache
+data/.atom/.node-gyp
+data/.atom/.storage
+data/.atom/packages
+data/.atom/storage
+data/.atom/themes
+data/.atom/compile-cache
