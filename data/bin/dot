@@ -4,7 +4,5 @@
 #
 # `dot` handles installation, updates, things like that. Run it periodically
 # to make sure you're on the latest and greatest.
-export BASH=$HOME/.dotfiles
 
-# Set OS X defaults
-$BASH/osx/set-defaults.sh
+cd ~/.dotfiles && ./script/bootstrap && cd ~/.private-dotfiles && ./script/bootstrap
