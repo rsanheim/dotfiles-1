@@ -1,6 +1,4 @@
 
-set -x
-
 # shortcut to this dotfiles path is $BASH
 export BASH=$HOME/.bash.d
 
