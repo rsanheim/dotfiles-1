@@ -4,3 +4,6 @@ SAVEHIST=10000
 
 # make Android tools available
 export ANDROID_HOME=/opt/boxen/homebrew/opt/android-sdk
+
+# YOLO
+export YOLO=always
