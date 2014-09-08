@@ -1,3 +1,23 @@
+
+These are my dotfiles.  This project was originally forked from @holman's https://github.com/holman/dotfiles repository.  
+You probably want to go there and fork his.  Mine has continued to diverge from his and has started to become its own 
+Frankenstein.
+
+Some of the changes that will cause you headaches / confusion if you're trying to use his stuff:
+
+ - this is basically a bash project, not zsh
+ - I'm using boxen and reworked this with that assumption
+ - I'm centralizing around a `.bash.d` directory structure
+ - I'm presuming you also want to do a very similar thing with not just a `~/.dotfiles`, but also a private-repo managed `~/.private-dotfiles`
+ - the `dot` script will bring both of these repositories together under your `~`
+ - I massaged things so that I can have files within one directory be some-private and some-public and have things work
+
+-----
+
+Original README from `holman/dotfiles` follows:
+
+-----
+
 # holman does dotfiles
 
 ## dotfiles
@@ -86,9 +106,3 @@ weight of my changes and tweaks inspired me to finally roll my own. But Ryan's
 dotfiles were an easy way to get into bash customization, and then to jump ship
 to zsh a bit later. A decent amount of the code in these dotfiles stem or are
 inspired from Ryan's original project.
-
-## forker's addendum
-
-I forked this further from Zach and converted back from zsh to bash (no
-accounting for taste, I suppose), and updated to rely on Boxen for a lot of
-things; then plopped my own dotfiles in here.
