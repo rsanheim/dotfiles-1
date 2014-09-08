@@ -10,3 +10,5 @@ alias rs='rails server'
 alias bungle='bundle'
 alias blunder='bundle'
 alias bx='bundle exec'
+
+alias ct='ctags -R --exclude=.git --exclude=log *'
