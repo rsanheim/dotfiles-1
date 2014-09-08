@@ -23,7 +23,7 @@ case "$1" in
   ;;
 esac
 
-remote=`git remote -v | grep "origin.*github.com/[^/]*/[^/]* (push)" | sed 's:^.*github.com/\([^/ ]*/[^/ ]*\)\.git.*$:\1:'`
+remote=`git remote -v | grep "origin.*github.com/[^/]*/[^/]* (push)" | sed 's:^.*github.com/\([^/ ]*/[^/ ]*\).*$:\1:' | sed 's:\.git$::'`
 
 [[ -z $remote ]] && echo "Not a github repository." && exit 1
 
