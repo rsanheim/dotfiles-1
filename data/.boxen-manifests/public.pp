@@ -93,7 +93,7 @@ class people::rick::public {
   package { 'xz': }
   package { 's3cmd': }
   package { 'ctags': }
-
+  package { 'html2text': }
 
   # WARNING: there's a known bug with this -- you will have to go through the
   # fuckholed Java `android` installer thing every time this brew gets installed
