@@ -59,6 +59,7 @@ class people::rick::public {
   include atom
   include bash
   include bash::completion
+  include brewcask
   include caffeine
   include chat
   include chrome
@@ -86,14 +87,16 @@ class people::rick::public {
   include vlc
   include wget
 
-  package { 'htop-osx': }
-  package { 'mpg123': }
-  package { 'id3lib': }
-  package { 'id3v2': }
-  package { 'xz': }
-  package { 's3cmd': }
+  package { 'cheatsheet' : provider => 'brewcask', install_options => "--appdir='/Applications'" }
   package { 'ctags': }
   package { 'html2text': }
+  package { 'htop-osx': }
+  package { 'id3lib': }
+  package { 'id3v2': }
+  package { 'mpg123': }
+  package { 's3cmd': }
+  package { 'sizeup' : provider => 'brewcask', install_options => "--appdir='/Applications'" }
+  package { 'xz': }
 
   # WARNING: there's a known bug with this -- you will have to go through the
   # fuckholed Java `android` installer thing every time this brew gets installed
