@@ -6,6 +6,7 @@
   'userId': 'f45f6f01061a25c864d112b6d1a2f7ac2ce4591d'
 'editor':
   'fontSize': 12
+  'invisibles': {}
 'core':
   'themes': [
     'hecs-dark-ui'
