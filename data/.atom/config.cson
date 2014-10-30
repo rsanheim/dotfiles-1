@@ -7,6 +7,9 @@
 'editor':
   'fontSize': 12
   'invisibles': {}
+  'showInvisibles': true
+  'softWrapAtPreferredLineLength': true
+  'softWrap': true
 'core':
   'themes': [
     'hecs-dark-ui'
@@ -14,3 +17,5 @@
   ]
 'gist-it':
   'newGistsDefaultToPrivate': true
+'whitespace':
+  'ignoreWhitespaceOnCurrentLine': false
