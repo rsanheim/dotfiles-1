@@ -46,4 +46,6 @@ end
 
 # courtesy jbarnette:
 $:.unshift "lib" if File.directory? "lib"
+$:.unshift ".irb.d" if File.directory? ".irb.d"
 
+require "hero"
