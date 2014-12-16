@@ -187,18 +187,18 @@ class people::rick::public {
 
   # Terminal
 
-  boxen::osx_defaults {
-    'Enable default terminal theme':
-      domain  => 'com.apple.Terminal',
-      key     => '"Default Window Settings"',
-      value   => 'lstoll',
-      require => Exec['install terminal theme'];
-    'Enable startup terminal theme':
-      domain  => 'com.apple.Terminal',
-      key     => '"Startup Window Settings"',
-      value   => 'lstoll',
-      require => Exec['install terminal theme'];
-  }
+#  boxen::osx_defaults {
+#    'Enable default terminal theme':
+#      domain  => 'com.apple.Terminal',
+#      key     => '"Default Window Settings"',
+#      value   => 'lstoll',
+#      require => Exec['install terminal theme'];
+#    'Enable startup terminal theme':
+#      domain  => 'com.apple.Terminal',
+#      key     => '"Startup Window Settings"',
+#      value   => 'lstoll',
+#      require => Exec['install terminal theme'];
+#  }
 
   class { 'boxen::security': screensaver_delay_sec => 0 }
 
