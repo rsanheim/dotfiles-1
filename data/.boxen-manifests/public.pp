@@ -1,8 +1,5 @@
 # the public portion of my dotfiles-managed personal boxen manifest
 class people::rick::public {
-  $home     = '/Users/rick'
-  $code     = "${home}/git/"
-  $dotfiles = "${home}/.dotfiles"
 
   notice "loading public"
 
@@ -19,25 +16,6 @@ class people::rick::public {
     'alias.co':   value => 'checkout';
     'alias.di':   value => 'diff';
     'alias.dc':   value => 'diff --cached';
-  }
-
-  file { $home:
-    ensure => directory,
-    mode   => '0700'
-  }
-
-  file { $code:
-    ensure => directory
-  }
-
-  file { $dotfiles:
-    ensure => directory
-  }
-
-  repository { $dotfiles:
-    path    => $dotfiles,
-    source  => 'rick/dotfiles',
-    require => File[$dotfiles]
   }
 
   include osx::dock::2d
@@ -61,10 +39,8 @@ class people::rick::public {
   include bash::completion
   include brewcask
   include caffeine
-  include chat
   include chrome
   include clojure
-  include dropbox
   include emacs
   include erlang
   include ffmpeg
@@ -102,10 +78,6 @@ class people::rick::public {
   # fuckholed Java `android` installer thing every time this brew gets installed
   # or updated.
   # package { 'android-sdk': }
-
-  chat::plugin {[
-    'github/chat-build-sidebar'
-  ]:}
 
   # external non-packaged application installs
   package {
@@ -226,11 +198,6 @@ class people::rick::public {
       key     => '"Startup Window Settings"',
       value   => 'lstoll',
       require => Exec['install terminal theme'];
-  }
-
-  exec { 'install terminal theme':
-    command => "/usr/bin/open ${boxen::config::home}/repo/modules/people/files/jnewland/jnewland.terminal",
-    unless  => '/usr/bin/defaults read com.apple.Terminal "Window Settings" | grep jnewland',
   }
 
   class { 'boxen::security': screensaver_delay_sec => 0 }
