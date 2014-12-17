@@ -3,13 +3,8 @@
 set -x
 set -e
 
-cd ${HOME}/.dotfiles
-git fetch
-git stash && git checkout master && git reset --hard origin/master
-
-cd ${HOME}/.private-dotfiles
-git fetch
-git stash && git checkout master && git reset --hard origin/master
+git safe-update "${HOME}/.dotfiles"
+git safe-update "${HOME}/.private-dotfiles"
 
 ${HOME}/bin/dot
 
