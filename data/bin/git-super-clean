@@ -21,14 +21,14 @@ if system("which git > /dev/null") && File.directory?(".git") \
 
   if current_branch.empty?
     ref = `git log -1 --pretty=format:%h`
-    warn "Project in #{name} not currently on any branch (ref: #{ref}), won't auto-update!"
+    raise "Project in #{name} not currently on any branch (ref: #{ref}), won't auto-update!"
   elsif !master
     local_branch =  current_branch.split('/')[2..-1].join('/')
-    warn "Project in #{name} is on a non-master branch '#{local_branch}', won't auto-update!"
+    raise "Project in #{name} is on a non-master branch '#{local_branch}', won't auto-update!"
   elsif !fast_forwardable
-    warn "Project in #{name} has master branch out of sync, won't auto-update!"
+    raise "Project in #{name} has master branch out of sync, won't auto-update!"
   elsif !clean
-    warn "Project in #{name}has a dirty tree, won't auto-update!"
+    raise "Project in #{name} has a dirty tree, won't auto-update!"
   elsif !upstream_changes
     warn "Project in #{name} is up-to-date."
   end
@@ -38,9 +38,11 @@ if system("which git > /dev/null") && File.directory?(".git") \
     reclean = "(git clean -qdf)"
 
     unless system "#{reset} && #{reclean}"
-      warn "Auto-update of project in #{name} FAILED, continuing."
+      raise "Auto-update of project in #{name} FAILED."
     end
   end
 else
-  warn "Project in #{name} is not a git repository."
+  raise "Project in #{name} is not a git repository."
 end
+
+exit 0
