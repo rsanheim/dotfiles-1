@@ -30,6 +30,3 @@ for file in $(find $BASH -type f -o -type l -name 'completion.bash')
 do
   source $file
 done
-
-cat ~/.octocat
-# (curl https://api.github.com/octocat > ~/.octocat &) 2> /dev/null
