@@ -34,7 +34,7 @@ if system("which git > /dev/null") && File.directory?(".git") \
   end
 
   if clean && master && fast_forwardable && upstream_changes
-    reset   = "(git reset --hard origin/master #{quietly})"
+    reset   = "(git reset --hard origin/master)"
     reclean = "(git clean -qdf)"
 
     unless system "#{reset} && #{reclean}"
