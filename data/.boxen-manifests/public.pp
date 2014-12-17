@@ -90,7 +90,7 @@ class people::rick::public {
       provider => appdmg;
     'Kindle':
       provider => 'appdmg',
-      source   => 'http://kindleformac.amazon.com/40381/KindleForMac.dmg';
+      source   => 'http://stuff.rickbradley.com/misc/KindleForMac.dmg';
     'DaisyDisk':
       provider => 'compressed_app',
       source   => 'http://www.daisydiskapp.com/downloads/DaisyDisk.zip';
