@@ -185,20 +185,23 @@ class people::rick::public {
     notify  => Exec['launch caffeine'],
   }
 
-  # Terminal
+  boxen::osx_defaults {
+    'Enable default terminal theme':
+      domain  => 'com.apple.Terminal',
+      key     => '"Default Window Settings"',
+      value   => 'rick-bradley',
+      require => Exec['install terminal theme'];
+    'Enable startup terminal theme':
+      domain  => 'com.apple.Terminal',
+      key     => '"Startup Window Settings"',
+      value   => 'rick-bradley',
+      require => Exec['install terminal theme'];
+  }
 
-#  boxen::osx_defaults {
-#    'Enable default terminal theme':
-#      domain  => 'com.apple.Terminal',
-#      key     => '"Default Window Settings"',
-#      value   => 'lstoll',
-#      require => Exec['install terminal theme'];
-#    'Enable startup terminal theme':
-#      domain  => 'com.apple.Terminal',
-#      key     => '"Startup Window Settings"',
-#      value   => 'lstoll',
-#      require => Exec['install terminal theme'];
-#  }
+  exec { 'install terminal theme':
+    command => "/usr/bin/open ${boxen::config::home}/repo/modules/people/files/rick/rick-bradley.terminal",
+    unless  => '/usr/bin/defaults read com.apple.Terminal "Window Settings" | grep rick-bradley',
+  }
 
   class { 'boxen::security': screensaver_delay_sec => 0 }
 
