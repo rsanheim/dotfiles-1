@@ -56,6 +56,7 @@ class people::rick::public {
   include nmap
   include onepassword
   include rdio
+  include sizeup
   include skype
   include sublime_text_2
   include tmux
