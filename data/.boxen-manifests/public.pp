@@ -38,6 +38,7 @@ class people::rick::public {
   include bash
   include bash::completion
   include brewcask
+  include btsync
   include caffeine
   include chrome
   include clojure
@@ -105,6 +106,9 @@ class people::rick::public {
     'AndroidFileTransfer':
       provider => 'appdmg',
       source   => 'https://dl.google.com/dl/androidjumper/mtp/current/androidfiletransfer.dmg';
+#    'BTSync':
+#      provider => 'appdmg',
+#      source   => 'http://download-new.utorrent.com/endpoint/btmac/os/osx/track/stable';
   }
 
   boxen::osx_defaults {
