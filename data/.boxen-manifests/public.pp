@@ -56,6 +56,7 @@ class people::rick::public {
   include imagemagick
   include nmap
   include onepassword
+  include onepassword::chrome
   include rdio
   include sizeup
   include skype
