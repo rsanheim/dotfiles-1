@@ -84,6 +84,10 @@ class people::rick::public {
 
   # external non-packaged application installs
   package {
+    's3cmd':
+      provider => 'compressed_app', 
+      flavor   => 'tgz',
+      source   => 'http://sourceforge.net/projects/s3tools/files/s3cmd/1.5.0/s3cmd-1.5.0.tar.gz/download',
     'Skitch':
       provider => 'compressed_app',
       source   => 'http://f.cl.ly/items/0V0L2B0o2X3J380R353E/Skitch-1.0.12.zip';
@@ -100,7 +104,7 @@ class people::rick::public {
     'LimeChat':
       provider => 'compressed_app',
       flavor   => 'tbz',
-      source   => 'http://downloads.sourceforge.net/project/limechat/limechat/LimeChat_2.42.tbz?r=http%3A%2F%2Flimechat.net%2Fmac%2F&ts=1405300873&use_mirror=superb-dca3';
+      source   => 'http://downloads.sourceforge.net/project/limechat/limechat/LimeChat_2.42.tbz?r=http%3A%2F%2Flimechat.net%2Fmac%2F&ts=1423616088&use_mirror=softlayer-dal';
     'Screenhero':
       provider => 'appdmg',
       source   => 'http://dl.screenhero.com/update/screenhero/Screenhero.dmg';
