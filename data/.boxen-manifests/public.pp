@@ -87,7 +87,7 @@ class people::rick::public {
     's3cmd':
       provider => 'compressed_app', 
       flavor   => 'tgz',
-      source   => 'http://sourceforge.net/projects/s3tools/files/s3cmd/1.5.0/s3cmd-1.5.0.tar.gz/download',
+      source   => 'http://sourceforge.net/projects/s3tools/files/s3cmd/1.5.0/s3cmd-1.5.0.tar.gz/download';
     'Skitch':
       provider => 'compressed_app',
       source   => 'http://f.cl.ly/items/0V0L2B0o2X3J380R353E/Skitch-1.0.12.zip';
