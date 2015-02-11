@@ -83,6 +83,9 @@ class people::rick::public {
 
   # external non-packaged application installs
   package {
+    'SizeUp':
+      provider => 'compressed_app',
+      source   => 'http://www.irradiatedsoftware.com/downloads/?file=SizeUp.zip';
     's3cmd':
       provider => 'compressed_app', 
       flavor   => 'tgz',
