@@ -73,7 +73,6 @@ class people::rick::public {
   package { 'id3lib': }
   package { 'id3v2': }
   package { 'mpg123': }
-  package { 's3cmd': }
   package { 'sizeup' : provider => 'brewcask', install_options => "--appdir='/Applications'" }
   package { 'xz': }
 
