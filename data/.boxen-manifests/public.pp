@@ -50,7 +50,7 @@ class people::rick::public {
   include foreman
   include git
   include go
-  include handbrake
+  # include handbrake # FIXME
   include homebrew
   include hub
   include imagemagick
