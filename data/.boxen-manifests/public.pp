@@ -43,7 +43,7 @@ class people::rick::public {
   include chrome
   include clojure
   include emacs
-  include erlang
+  # include erlang # FIXME
   include ffmpeg
   include fitbit
   include flux
