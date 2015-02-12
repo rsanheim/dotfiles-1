@@ -58,7 +58,6 @@ class people::rick::public {
   include onepassword
   include onepassword::chrome
   include rdio
-  include sizeup
   include skype
   include sublime_text_2
   include tmux
