@@ -254,6 +254,15 @@ class people::rick::public {
 
 class { 'vagrant': }
 
+vagrant::plugin { 'nokogiri':
+  version => '1.6.1',
+  prefix  => false
+}
+
+vagrant::plugin { 'vmware-fusion':
+  version => '3.2.2'
+}
+
 vagrant::plugin { 'reload': }
 vagrant::plugin { 'multiprovider-snap': }
 vagrant::plugin { 'oscar': 
