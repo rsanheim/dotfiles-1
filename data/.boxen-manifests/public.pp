@@ -69,8 +69,10 @@ class people::rick::public {
 
   package { 'cheatsheet' : provider => 'brewcask', install_options => "--appdir='/Applications'" }
   package { 'ctags': }
+  package { 'gpg': }
   package { 'html2text': }
   package { 'htop-osx': }
+  package { 'icu4c': }
   package { 'id3lib': }
   package { 'id3v2': }
   package { 'mpg123': }
