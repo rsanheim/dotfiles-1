@@ -67,6 +67,7 @@ class people::rick::public {
   include vlc
   include wget
 
+  package { 'tunnelblick' : provider => 'brewcask', install_options => "--appdir='/Applications'" }
   package { 'cheatsheet' : provider => 'brewcask', install_options => "--appdir='/Applications'" }
   package { 'ctags': }
   package { 'gpg': }
