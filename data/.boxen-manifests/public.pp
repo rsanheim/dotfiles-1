@@ -42,6 +42,7 @@ class people::rick::public {
   include caffeine
   include chrome
   include clojure
+  include docker
   include emacs
   # include erlang # FIXME
   include ffmpeg
