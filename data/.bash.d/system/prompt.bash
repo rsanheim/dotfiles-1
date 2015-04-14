@@ -1,5 +1,5 @@
 # bring in boxen's version of all the fancy git prompt stuff
-source /opt/boxen/homebrew/etc/bash_completion.d/git-prompt.sh
+source ./vendor/git-prompt.sh
 
 # fancy prompt stuff
 
