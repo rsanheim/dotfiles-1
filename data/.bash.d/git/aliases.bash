@@ -1,6 +1,8 @@
+
+
 # Use `hub` as our git wrapper:
 #   http://defunkt.github.com/hub/
-alias git='hub'
+which hub 2>/dev/null | grep hub && alias git='hub'
 
 # git-related aliases
 alias g='git grep'
