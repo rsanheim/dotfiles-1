@@ -70,11 +70,16 @@ else
 fi
 
 PROMPT_HOST="${TEXT_PURPLE}$(hostname|sed 's|\..*||')${TEXT_RESET}";
+if [[ `whoami` == 'root' ]]; then
+USER_FLAG="${TEXT_RED}#${TEXT_RESET}"
+else
+USER_FLAG="${TEXT_GREEN}%${TEXT_RESET}"
+fi
 
 set_prompt(){
   status_color=$(previous_exit_color $?)
   history -a # append history after each command
-  __git_ps1 "${TAB_NAME}${WINDOW_NAME}${TEXT_CYAN}\d \t${TEXT_RESET} ${PROMPT_HOST} ${TEXT_YELLOW}\w${TEXT_RESET}\n" " ${status_color}▸${TEXT_RESET} "
+  __git_ps1 "${TAB_NAME}${WINDOW_NAME}${TEXT_CYAN}\d \t${TEXT_RESET} ${PROMPT_HOST} ${TEXT_YELLOW}\w${TEXT_RESET}\n" " ${USER_FLAG} ${status_color}▸${TEXT_RESET} "
 }
 
 PROMPT_COMMAND=set_prompt
