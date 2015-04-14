@@ -1,5 +1,5 @@
 # bring in boxen's version of all the fancy git prompt stuff
-source ./vendor/git-prompt.sh
+source "${HOME}/.bash.d/system/vendor/git-prompt.sh"
 
 # fancy prompt stuff
 
