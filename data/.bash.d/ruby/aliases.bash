@@ -10,5 +10,6 @@ alias rs='rails server'
 alias bungle='bundle'
 alias blunder='bundle'
 alias bx='bundle exec'
+alias bv='bungle install --path vendor'
 
 alias ct='ctags -R --exclude=.git --exclude=log *'
