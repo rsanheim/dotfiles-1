@@ -273,3 +273,4 @@ vagrant::plugin { 'oscar':
   prefix => false
 }
 
+nodejs::version { 'v0.10.31': }
