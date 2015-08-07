@@ -6,7 +6,7 @@
   metrics:
     userId: "f45f6f01061a25c864d112b6d1a2f7ac2ce4591d"
   editor:
-    fontSize: 12
+    fontSize: 13
     invisibles: {}
     showInvisibles: true
     softWrapAtPreferredLineLength: true
@@ -20,3 +20,6 @@
     newGistsDefaultToPrivate: true
   whitespace:
     ignoreWhitespaceOnCurrentLine: false
+  "tree-view":
+    hideVcsIgnoredFiles: true
+  "git-blame": {}
