@@ -32,23 +32,26 @@ link_file () {
   local src=$1 dst=$2
 
   local overwrite= backup= skip=
-  local action=
+  local action= copy=
+
+  if [[ "$dst" =~ \._copy_$ ]]
+  then
+    copy="true"
+    dst=${dst%._copy_}
+  else
+    copy="false"
+  fi
 
   if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
   then
-
     if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]
     then
-
       local currentSrc="$(readlink $dst)"
 
       if [ "$currentSrc" == "$src" ]
       then
-
         skip=true;
-
       else
-
         user "File already exists: ${dst}, what do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
         read -n 1 action
 
@@ -68,9 +71,7 @@ link_file () {
           * )
             ;;
         esac
-
       fi
-
     fi
 
     overwrite=${overwrite:-$overwrite_all}
@@ -97,11 +98,17 @@ link_file () {
 
   if [ "$skip" != "true" ]  # "false" or empty
   then
-    dstdir="$(dirname $2)"
+    dstdir="$(dirname "$dst")"
     mkdir -p "${dstdir}"
 
-    ln -s "$1" "$2"
-    success "linked $1 to $2"
+    if [ "$copy" == "true" ]
+    then
+      cp "$src" "$dst"
+      success "copied $src to $dst"
+    else
+      ln -s "$src" "$dst"
+      success "linked $src to $dst"
+    fi
   fi
 }
 
@@ -110,7 +117,7 @@ install_dotfiles () {
 
   local overwrite_all=false backup_all=false skip_all=false
 
-  for src in $(find ${DOTFILES_DATA} -type f)
+  find ${DOTFILES_DATA} -type f -print0 | while read -d $'\0' src
   do
     dst="$HOME/${src##${DOTFILES_DATA}/}"
     link_file "$src" "$dst"
