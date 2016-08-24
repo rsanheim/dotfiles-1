@@ -1,25 +1,33 @@
 "*":
-  "exception-reporting":
-    userId: "5dab82a5-60b9-b5d8-93b0-6cbbc9af46f5"
-  welcome:
-    showOnStartup: false
-  metrics:
-    userId: "f45f6f01061a25c864d112b6d1a2f7ac2ce4591d"
-  editor:
-    fontSize: 13
-    invisibles: {}
-    showInvisibles: true
-    softWrapAtPreferredLineLength: true
-    softWrap: true
   core:
+    allowPendingPaneItems: false
+    audioBeep: false
+    closeEmptyWindows: false
+    excludeVcsIgnoredPaths: false
+    projectHome: "/Users/rick/git"
     themes: [
       "hecs-dark-ui"
       "hecs-dark-theme-syntax"
     ]
+  editor:
+    fontSize: 13
+    invisibles: {}
+    scrollPastEnd: true
+    showIndentGuide: true
+    showInvisibles: true
+    softWrap: true
+    softWrapAtPreferredLineLength: true
+    zoomFontWhenCtrlScrolling: true
+  "exception-reporting":
+    userId: "5dab82a5-60b9-b5d8-93b0-6cbbc9af46f5"
   "gist-it":
     newGistsDefaultToPrivate: true
-  whitespace:
-    ignoreWhitespaceOnCurrentLine: false
+  "git-blame": {}
+  metrics:
+    userId: "f45f6f01061a25c864d112b6d1a2f7ac2ce4591d"
   "tree-view":
     hideVcsIgnoredFiles: true
-  "git-blame": {}
+  welcome:
+    showOnStartup: false
+  whitespace:
+    ignoreWhitespaceOnCurrentLine: false
