@@ -53,7 +53,7 @@ link_file () {
         skip=true;
       else
         user "File already exists: ${dst}, what do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
-        read -n 1 action
+#        read -n 1 action
 
         case "$action" in
           o )
