@@ -1,44 +1,31 @@
-#!/usr/bin/env perl
-use JSON;
-use Net::MQTT::Simple::SSL;
+#!/usr/bin/env ruby
+$:.unshift File.dirname(__FILE__)+'/../lib'
 
-my $json = JSON->new->allow_nonref;
-my $mqtt = Net::MQTT::Simple::SSL->new( "mqtt:8883",
-                                        {
-                                          SSL_ca_file   => '/Users/rick/ssl/mqtt/certs/ca.crt',
-                                          SSL_cert_file => '/Users/rick/ssl/mqtt/certs/localhost.crt',
-                                          SSL_key_file  => '/Users/rick/ssl/mqtt/private/localhost.ckey',
-                                         }
-                                      );
+require 'rubygems'
+require 'mqtt'
 
-# Derive our topic from our some/topic@hostname
-my $topic_at_host = shift(@ARGV);
-my ($topic,$host) = split(/\@/,$topic_at_host);
+#
+# Connect to a MQTT server using SSL/TLS Client Certificate,
+# send the requested payload.
+#
 
-# Generate a random topic for reply
-my @chars = ("A".."Z", "a".."z", "0".."9");
-my $respond_topic;
-$respond_topic .= $chars[rand @chars] for 1..16;
+def usage
+  puts "#{$0} topic@server payload"
+  puts %Q(  example: #{$0} bikeshed/hue@mqtt "{\"action\":\"color\",\"lights\":\"all\",\"color\":\"yellow\"}")
+  exit 1
+end
 
-my $json_text = shift(@ARGV);
-$json_hash = $json->decode($json_text);
+connection = ARGV.shift || usage
+topic, server = connection.split('@')
+payload = ARGV.shift || usage
 
-print "$topic $host $respond_topic $json_text\n";
+# Note: Ruby 1.8 / 1.9 only support TLSv1
+client = MQTT::Client.new(server, :ssl => true)
 
-# append a 'respond_topic':'mqtt/_random_respond_topic' to our user-provided message
-$json_hash->{'respond_topic'} = "mqtt/$respond_topic\@mqtt.hq.thebikeshed.io" unless(defined( $json_hash{'respond_topic'}));
+client.ca_file   = ENV['MQTT_CLIENT_CA']   || '/etc/ssl/ca.crt'
+client.cert_file = ENV['MQTT_CLIENT_CERT'] || '/etc/ssl/localhost.crt'
+client.key_file  = ENV['MQTT_KEY_FILE']    || '/etc/ssl/localhost.ckey'
 
-$json_text = $json->encode($json_hash);
-
-# send the command
-$mqtt->publish($topic => $json_text);
-
-# wait for our response
-# print "waitfor: mqtt/${respond_topic}\n";
-# $mqtt->run(
-#             "mqtt/${respond_topic}" => sub{
-#                                             ($topic,$message)=@_;
-#                                             print "[$topic] $message\n";
-#                                             exit 0;
-#                                           }
-#           );
+client.connect do
+  client.publish(topic, payload)
+end
