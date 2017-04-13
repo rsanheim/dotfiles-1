@@ -5,6 +5,7 @@
 which hub 2>/dev/null | grep hub >/dev/null && alias git='hub'
 
 # git-related aliases
+alias bankrupt="git stash --all"
 alias g='git grep'
 alias gk='script/gack'
 alias gf='git fetch'
@@ -34,3 +35,4 @@ alias gsb='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 alias gt='git-track'
 alias commit='git-open-commit'
 alias ow='git overwritten'
+
