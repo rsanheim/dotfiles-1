@@ -1,6 +1,7 @@
 alias ls='ls -GFh'
 alias ll='ls -al'
 alias s3='s3cmd --config ~/.s3cfg-mine'
+alias unfuck-cameras='sudo killall VDCAssistant'
 
 # docker
 alias dps="docker ps -a --no-trunc"
