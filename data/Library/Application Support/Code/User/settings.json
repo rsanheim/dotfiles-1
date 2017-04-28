@@ -3,5 +3,6 @@
     "git.autorefresh": false,
     "git.autofetch": false,
     "workbench.editor.closeOnFileDelete": false,
-    "files.trimTrailingWhitespace": true
+    "files.trimTrailingWhitespace": true,
+    "go.testOnSave": true
 }
