@@ -30,3 +30,6 @@ for file in $(find $BASH -type f -o -type l -name 'completion.bash')
 do
   source $file
 done
+
+# added by travis gem
+[ -f /Users/rick/.travis/travis.sh ] && source /Users/rick/.travis/travis.sh
