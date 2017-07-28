@@ -4,5 +4,10 @@
     "git.autofetch": false,
     "workbench.editor.closeOnFileDelete": false,
     "files.trimTrailingWhitespace": true,
-    "go.testOnSave": true
+    "go.testOnSave": true,
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.renderWhitespace": "all",
+    "editor.autoIndent": true,
+    "files.insertFinalNewline": true
 }
