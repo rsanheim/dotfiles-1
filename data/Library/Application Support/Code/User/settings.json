@@ -6,8 +6,12 @@
     "files.trimTrailingWhitespace": true,
     "go.testOnSave": true,
     "editor.tabSize": 2,
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.renderWhitespace": "all",
-    "editor.autoIndent": true,
-    "files.insertFinalNewline": true
+    "editor.autoIndent": false,
+    "files.insertFinalNewline": true,
+    "window.zoomLevel": 0,
+    "typescript.check.npmIsInstalled": false,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false
 }
